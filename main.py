@@ -1,27 +1,27 @@
 import sys
 
-from PyQt5.QtSql import QSqlDatabase
-from PyQt5.QtWidgets import QApplication, QMessageBox, QLabel
+from PyQt5.QtSql import QSqlDatabase, QSqlQuery
 
-# Creacte the connection.
+# Create the connection.
 con = QSqlDatabase.addDatabase("QSQLITE")
 con.setDatabaseName("contacts.sqlite")
 
-# Create the application.
-app = QApplication(sys.argv)
-
-# Try open the connection and handle possible errors.
+# Open the connection.
 if not con.open():
-    QMessageBox.critical(
-        None,
-        "App Name - Error!"
-        "Database Error:%s"%con.lastError().databaseText(),
-    )
+    print("Database Error:%s"%con.lastError().databaseText())
     sys.exit(1)
 
-# Create the application's window.
-win = QLabel("Connection Successfully Opened!")
-win.setWindowTitle("App Name")
-win.resize(200, 100)
-win.show()
-sys.exit(app.exec_())
+# Create a query and execute it right away using .exec().
+createTableQuery = QSqlQuery()
+createTableQuery.exec(
+    """
+    CREATE TABLE contacts(
+    id INTEGER PRIMARY KEY AUTOINCREMENT INIQUE NOT NULL,
+    name VARCHAR(40) NOT NULL,
+    job VARCHAR(50),
+    email VARCHAR(40) NOT NULL
+    )
+    """
+)
+
+print(con.tables())
