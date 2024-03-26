@@ -54,8 +54,7 @@ sys.exit(app.exec_())
 
 
 def main():
-     "dhzdzzrjzj"
-
+     pass
 
 if __name__ == '__main__':
      main()
