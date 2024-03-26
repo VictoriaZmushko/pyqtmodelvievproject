@@ -1,5 +1,6 @@
 import sys
 
+
 from PyQt5.QtCore import Qt
 from PyQt5.QtSql import QSqlDatabase, QSqlTableModel
 from PyQt5.QtWidgets import(
@@ -50,3 +51,10 @@ if not createConnection():
 win = Contacts()
 win.show()
 sys.exit(app.exec_())
+
+
+def main():
+     pass
+
+if __name__ == '__main__':
+     main()
